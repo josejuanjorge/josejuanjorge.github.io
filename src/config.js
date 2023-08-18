@@ -22,7 +22,12 @@ var config = {
         '    </div>\n' +
         '</div>'+
     ' <div  style="width:auto;height:420px; background-color:#8a7a9a; text-align: center;" ;><img src="./images/banner.png" alt="HCR Logo" style="max-width: 100%; max-height: 100%;";></div>',
-    footer: 'If you are interested in becoming a prime or sub contractor, please view HCR’s future opportunities.',
+    footer: '<h2>If you are interested in becoming a prime or sub contractor, please view HCR’s future opportunities.</h2><a style="background-color: white;\n' +
+        '    color: grey;\n' +
+        '    padding: 8px 16px;\n' +
+        '    border-radius: 4px;  \n' +
+        '    text-decoration: none;' +
+        '        }" href="https://josejuanjorge.github.io/src/opportunities.html"><b>ALL OPPORTUNITIES</b></a>',
     chapters: [
         {
             id: 'start',
