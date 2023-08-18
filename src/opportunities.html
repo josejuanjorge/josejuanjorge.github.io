@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+  <meta charset="utf-8">
+  <title>HCR Opportunities</title>
+</head>
+<style>
+  #topBar {
+    background-color: #442572;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 5px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10; /* Ensure the navbar appears above the map */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-button {
+    margin-left: auto; /* Pushes the login button to the right */
+}
+
+.login-button a {
+    background-color: white;
+    color: grey;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.map-button {
+    margin-left: auto; /* Pushes the login button to the right */
+}
+
+.map-button a {
+    background-color: white;
+    color: grey;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.marker {
+display: block;
+border: none;
+border-radius: 50%;
+cursor: pointer;
+padding: 0;
+}
+ #container {
+    display: flex;
+     top:90px;
+  }
+
+  #map {
+    top:90px;
+    flex: 60; /* Updated flex value */
+    width: 70%; /* Updated width */
+    height: 90vh;
+  }
+
+  #table-container {
+    flex: 40; /* Updated flex value */
+    padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 90px;
+    overflow-y: auto;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.9em;
+      min-with:400px;
+      border-radius: 5px 5px 0 0;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0,0, 0.15);
+  }
+
+  th, td {
+
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #442572;
+      text-align: left;
+      font-weight: bold;
+      color: white;
+  }
+
+  .mapboxgl-popup {
+max-width: 400px;
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+
+#table-container table tr:nth-last-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+#table-container table tr:last-of-type {
+  border-bottom:2px solid #442572;
+}
+
+  /* Add this CSS to style the selected row */
+#table-container table tr.selected {
+  background-color: #cce5ff;
+    font-weight: bold;
+}
+</style>
+
+<body>
+<div id="topBar">
+    <img src="./images/nys_hcr_logo.png" alt="HCR Logo" style="width:360px;height:80px;">
+    <nav>
+        <ul>
+            <li class="map-button"><a href="http://localhost:63342/storytelling-main/src/opportunitiesExtrusion.html">Demo Map</a></li>
+            <li><a href="http://localhost:63342/storytelling-main/src/index.html">Home</a></li>
+            <li><a href="#">Opportunities</a></li>
+            <li class="login-button"><a href="#">Log In</a></li>
+        </ul>
+    </nav>
+</div>
+<div id='container'>
+  <div id='map'>
+  </div>
+  <div id='table-container'>
+    <table class="content-table">
+      <tr>
+        <th>Project ID</th>
+        <th>Property Name</th>
+        <th>Address</th>
+        <th>Num Buildings</th>
+      </tr>
+      <!-- Use JavaScript to populate the table rows -->
+    </table>
+  </div>
+</div>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiampqYyIsImEiOiJjbGlpeTZkYjgwMnZoM2pwbDJrdGhmeWhnIn0.pSKvo7jTLU4cjcfQPDIPhQ';
+
+ const propertyData = [
+  { id:1447, propertyName: '101 West End Avenue (Park Hudson)', address: '101 W END AVE, NEW YORK, NY 10023' , latitude: 40.7750654093186, longitude: -73.9886346255779, numBuildings: 1, pResUnitNum: 507},
+{ id:800016137, propertyName: '1199 Plaza', address: '2120 First Ave, New York, 10029' , latitude: 40.7915654299999, longitude: -73.93823358, numBuildings: 1, pResUnitNum: 1594},
+{ id:1382, propertyName: '250 West 50th Street (The Gershwin)', address: '250 W 50TH ST, New York, NY 10019' , latitude: 40.7618852827877, longitude: -73.9854132554707, numBuildings: 1, pResUnitNum: 550},
+{ id:1878, propertyName: '320 West 38th Street (Emerald Green)', address: '320 West 38th ST, New York, NY 10018' , latitude: 40.755109620294, longitude: -73.9928386750658, numBuildings: 1, pResUnitNum: 569},
+{ id:2336, propertyName: '325 Kent Avenue', address: '325 Kent AVE, Brooklyn, NY 11249' , latitude: 40.7135720896703, longitude: -73.9671408451498, numBuildings: 1, pResUnitNum: 522},
+{ id:2293, propertyName: '555Ten', address: '555 10th Ave, New York, 10018' , latitude: 40.7587589999999, longitude: -73.996499, numBuildings: 2, pResUnitNum: 598},
+{ id:2204, propertyName: '606 West 57th Street', address: '606 W 57 St, New York, NY, 10019' , latitude: 40.7704349999999, longitude: -73.992671, numBuildings: 1, pResUnitNum: 1028},
+{ id:2493, propertyName: 'Amalgamated Houses', address: '3975 Sedgwick Avenue, Bronx, 10463' , latitude: 40.883327, longitude: -73.889143, numBuildings: 21, pResUnitNum: 1487},
+{ id:800015951, propertyName: 'Andrews Terrace', address: '125 St Paul Street, Rochester, 14604' , latitude: 43.15916216, longitude: -77.6111515999999, numBuildings: 1, pResUnitNum: 526},
+{ id:2243, propertyName: 'Brighton Towers', address: '821 East Brighton Avenue, Syracuse, NY 13205' , latitude: 43.0052415038638, longitude: -76.1296149120341, numBuildings: 2, pResUnitNum: 599},
+{ id:2184, propertyName: 'Bronx Park Phase II (Twin Parks SW)', address: '1985 Webster AVE, Bronx, NY 10457' , latitude: 40.8490452265272, longitude: -73.9005346972793, numBuildings: 4, pResUnitNum: 536},
+{ id:1679, propertyName: 'Brookdale Village', address: '125 Beach 19th Street, Far Rockaway, NY 11691' , latitude: 40.5932141176703, longitude: -73.7534425781259, numBuildings: 2, pResUnitNum: 547},
+{ id:2459, propertyName: 'Capital District Apartments', address: '718-720 Albany Street, Schenectady, NY 12307' , latitude: 42.7268785516709, longitude: -73.7010077600372, numBuildings: 4, pResUnitNum: 585},
+{ id:2379, propertyName: 'Charlotte Harbortown Homes', address: '60 River Street, Rochester, NY 14642' , latitude: 43.2442924124376, longitude: -77.6165010106756, numBuildings: 18, pResUnitNum: 552},
+{ id:2016, propertyName: 'Gotham West', address: '550 West 45th Street, New York, NY 10036' , latitude: 40.7624095228974, longitude: -73.9964059228775, numBuildings: 4, pResUnitNum: 1238},
+{ id:1552, propertyName: 'Helena', address: '601-613 W 57th ST, New York, NY 10019' , latitude: 40.7709054903832, longitude: -73.9926405416755, numBuildings: 1, pResUnitNum: 597},
+{ id:2612, propertyName: 'Hope Gardens- NYCHA 3', address: '415 Evergreen Ave, Brooklyn, NY, 11221' , latitude: 40.6924567093021, longitude: -73.9198643352917, numBuildings: 47, pResUnitNum: 949},
+{ id:800015299, propertyName: 'Israel Senior Citizen Housing I & II', address: '19-25 Seagirt Blvd, Far Rockaway, 11691' , latitude: 40.59436848, longitude: -73.75415938, numBuildings: 1, pResUnitNum: 513},
+{ id:800015342, propertyName: 'Keeler Park Apartments', address: '501 Seneca Manor Drive, Rochester, 14621' , latitude: 43.19322365, longitude: -77.60249767, numBuildings: 1, pResUnitNum: 526},
+{ id:800015444, propertyName: 'MANHATTAN PLAZA', address: '400 W 43rd ST, NEW YORK, 10036' , latitude: 40.7592431599999, longitude: -73.9927221699999, numBuildings: 1, pResUnitNum: 1689},
+{ id:2249, propertyName: 'Marcus Garvey Preservation', address: '396-400 Bristol Street, Brooklyn, NY 11212' , latitude: 40.6630678444439, longitude: -73.9099489440692, numBuildings: 32, pResUnitNum: 628},
+{ id:800015825, propertyName: 'Shore Hill Apartments', address: '9000 Shore Rd, Brooklyn, 11209' , latitude: 40.62192915, longitude: -74.0399572599999, numBuildings: 1, pResUnitNum: 559},
+{ id:800015895, propertyName: 'Starrett City', address: '1255 Pennsylvania Ave, Brooklyn, 11239' , latitude: 40.64391174, longitude: -73.87938114, numBuildings: 1, pResUnitNum: 5881},
+{ id:800235221, propertyName: 'The Village of West Farms', address: '990 E 178th St, Bronx, 10460' , latitude: 40.8414464399999, longitude: -73.8811297599999, numBuildings: 1, pResUnitNum: 526},
+];
+const geojson = {
+  type: 'FeatureCollection',
+  features: propertyData.map(property => ({
+    type: 'Feature',
+    properties: {
+      message: `<strong>${property.propertyName}</strong><br>${property.address}`,
+      iconSize: [10, 10],
+      id: property.id,
+        address:property.address ,
+        propertyName:property.propertyName,
+        numBuildings:property.numBuildings,
+
+    },
+    geometry: {
+      type: 'Point',
+      coordinates: [property.longitude, property.latitude]
+    }
+  }))
+};
+
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center:  [-75.28321, 42.25950],
+    zoom: 6.3,
+  });
+
+const color = "#442572";
+  // Add markers and table to the map.
+const tableContainer = document.getElementById('table-container');
+for (const marker of geojson.features) {
+  // Create a DOM element for each marker.
+  const el = document.createElement('div');
+  const width = marker.properties.iconSize[0];
+  const height = marker.properties.iconSize[1];
+  el.className = 'marker';
+  el.style.backgroundColor = color;
+  el.style.width = `${width}px`;
+  el.style.height = `${height}px`;
+  el.style.backgroundSize = '100%';
+  // el.style.opacity = '0.5';
+
+  // Store coordinates and description as custom attributes
+  el.setAttribute(
+    "data-coordinates",
+    JSON.stringify(marker.geometry.coordinates)
+  )
+  el.setAttribute("data-description", JSON.stringify(marker.properties))
+
+  el.addEventListener('mouseenter', (e) => {
+    // Change the cursor style as a UI indicator.
+    map.getCanvas().style.cursor = 'pointer';
+    const features = JSON.parse((e.currentTarget )?.getAttribute(
+        "data-description"
+      ))
+    const data_coordinates = JSON.parse((e.currentTarget )?.getAttribute(
+        "data-coordinates"
+      ))
+
+    const coordinates = data_coordinates.slice();
+    const description = features.message;
+
+    popup.setLngLat(coordinates).setHTML(description).addTo(map);
+  });
+
+  el.addEventListener('mouseleave', () => {
+    map.getCanvas().style.cursor = '';
+    popup.remove();
+  });
+  // Add markers to the map.
+  new mapboxgl.Marker(el)
+  .setLngLat(marker.geometry.coordinates)
+  .addTo(map);
+
+    // Create a popup, but don't add it to the map yet.
+  const popup = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false
+  });
+
+   map.on('mouseenter', (e) => {
+    // Change the cursor style as a UI indicator.
+    map.getCanvas().style.cursor = 'pointer';
+
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const description = e.features[0].properties.message;
+
+    // Ensure that if the map is zoomed out such that multiple
+    // copies of the feature are visible, the popup appears
+    // over the copy being pointed to.
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+
+    // Populate the popup and set its coordinates
+    // based on the feature found.
+    popup.setLngLat(coordinates).setHTML(description).addTo(map);
+  });
+
+  map.on('mouseleave', () => {
+    map.getCanvas().style.cursor = '';
+    popup.remove();
+  });
+
+  // Populate the table
+    const tableRow = document.createElement('tr');
+    tableRow.setAttribute('id', `row_${marker.properties.id}`);
+    tableRow.setAttribute('location', marker.geometry.coordinates);
+    const idCell = document.createElement('td');
+    idCell.textContent = marker.properties.id;
+    const nameCell = document.createElement('td');
+    nameCell.textContent = marker.properties.propertyName;
+    const addressCell = document.createElement('td');
+    addressCell.textContent = marker.properties.address;
+    const numBuildingsCell = document.createElement('td');
+    numBuildingsCell.textContent = marker.properties.numBuildings;
+    tableRow.appendChild(idCell);
+    tableRow.appendChild(nameCell);
+    tableRow.appendChild(addressCell);
+    tableRow.appendChild(numBuildingsCell);
+    tableContainer.querySelector('table').appendChild(tableRow);
+  }
+
+let selectedRowData = null;
+let selectedRowIndex = -1; // No row selected initially
+
+// Function to toggle row selection
+function toggleRowSelection(row, rowData) {
+  if (selectedRowData === rowData) {
+    // If the clicked row is already selected, unselect it
+    selectedRowData = null;
+    row.classList.remove('selected');
+  } else {
+
+    // Otherwise, select the clicked row
+    selectedRowData = rowData;
+    row.classList.add('selected');
+  }
+}
+
+map.on('load', () => {
+  // Create a popup, but don't add it to the map yet.
+  const popup = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false
+  });
+
+  map.on('mouseenter', 'markers', (e) => {
+    // Change the cursor style as a UI indicator.
+    map.getCanvas().style.cursor = 'pointer';
+
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const description = e.features[0].properties.message;
+
+    // Ensure that if the map is zoomed out such that multiple
+    // copies of the feature are visible, the popup appears
+    // over the copy being pointed to.
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+
+    // Populate the popup and set its coordinates
+    // based on the feature found.
+    popup.setLngLat(coordinates).setHTML(description).addTo(map);
+  });
+
+  map.on('mouseleave', 'markers', () => {
+    map.getCanvas().style.cursor = '';
+    popup.remove();
+  });
+});
+
+// Add zoom and rotation controls to the map.
+map.addControl(new mapboxgl.NavigationControl());
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const tableRows = document.querySelectorAll('#table-container table tr');
+
+   tableRows.forEach((row, index) => {
+    row.addEventListener('click', () => {
+      if (selectedRowIndex === index) {
+        // Clicked on the same row, unselect it
+        selectedRowIndex = -1;
+        row.classList.remove('selected');
+        map.flyTo({
+                center:  [-75.28321, 42.25950],
+    zoom: 6.3,
+            essential: true // this animation is considered essential with respect to prefers-reduced-motion
+            });
+      } else {
+        // Clicked on a different row, update selection
+        if (selectedRowIndex !== -1) {
+          // Unselect the previously selected row
+          tableRows[selectedRowIndex].classList.remove('selected');
+        }
+        selectedRowIndex = index;
+        row.classList.add('selected');
+
+       console.log(tableRows[selectedRowIndex].getAttribute('location'))
+const locationAttribute = tableRows[selectedRowIndex].getAttribute('location');
+console.log(locationAttribute);
+
+const [longitudeStr, latitudeStr] = locationAttribute.split(',');
+const longitude = parseFloat(longitudeStr);
+const latitude = parseFloat(latitudeStr);
+
+const target = {
+  center: [longitude, latitude],
+  zoom: 18,
+  bearing: 0,
+  pitch: 20,
+};
+        map.flyTo({
+            center: target.center,
+            zoom: target.zoom,
+          pitch: target.pitch,
+            essential: true // this animation is considered essential with respect to prefers-reduced-motion
+            });
+      }
+    });
+  });
+});
+map.on('style.load', () => {
+// Insert the layer beneath any symbol layer.
+const layers = map.getStyle().layers;
+const labelLayerId = layers.find(
+(layer) => layer.type === 'symbol' && layer.layout['text-field']
+).id;
+
+// The 'building' layer in the Mapbox Streets
+// vector tileset contains building height data
+// from OpenStreetMap.
+map.addLayer(
+{
+'id': 'add-3d-buildings',
+'source': 'composite',
+'source-layer': 'building',
+'filter': ['==', 'extrude', 'true'],
+'type': 'fill-extrusion',
+'minzoom': 15,
+'paint': {
+'fill-extrusion-color': '#aaa',
+
+// Use an 'interpolate' expression to
+// add a smooth transition effect to
+// the buildings as the user zooms in.
+'fill-extrusion-height': [
+'interpolate',
+['linear'],
+['zoom'],
+15,
+0,
+15.05,
+['get', 'height']
+],
+'fill-extrusion-base': [
+'interpolate',
+['linear'],
+['zoom'],
+15,
+0,
+15.05,
+['get', 'min_height']
+],
+'fill-extrusion-opacity': 0.6
+}
+},
+labelLayerId
+);
+});
+</script>
+</body>
