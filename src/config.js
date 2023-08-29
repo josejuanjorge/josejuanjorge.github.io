@@ -14,7 +14,7 @@ var config = {
     subtitleWithVideo: '<div>\n' +
         '    <div class="content">\n' +
         '        <div class="text">\n' +
-        '            <h2><p>HCR develops, preserves and protects affordable housing and invests in New York’s economically vibrant communities. We work with many private, public and nonprofit partners to create safe, healthy and affordable housing opportunities for all New Yorkers.</p><p>This new website presents HCR’s portfolio of developments and highlights opportunities for developers, primes, and subcontractors to explore future opportunities and report utilization on existing projects.</p></h2>\n' +
+        '            <h2 style="font-weight: normal;"><p>HCR develops, preserves and protects affordable housing and invests in New York’s economically vibrant communities. We work with many private, public and nonprofit partners to create safe, healthy and affordable housing opportunities for all New Yorkers.</p><p>This new website presents HCR’s portfolio of developments and highlights opportunities for developers, primes, and subcontractors to explore future opportunities and report utilization on existing projects.</p></h2>\n' +
         '        </div>\n' +
         '        <div class="video">\n' +
         '           <p><iframe width="500" height="315" src="https://www.youtube.com/embed/WwrSqxyuAkM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>\n' +
@@ -165,11 +165,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: '',
-            description: '<p class="description-text">HCR directly invested more than $3.8 billion to help provide 184,192 homes to families.</p>' +
-                '<dl id="leyend">' +
-                '<dt style="background-color:blue; text-color:blue">___</dt><dd>60 > residents per building</dd><br>' +
-                '<dt style="background-color:greenyellow; text-color:greenyellow">___</dt><dd>60 < residents per building < 150 </dd><br>' +
-                '<dt style="background-color:red; text-color:red"  >___</dt><dd>150 > residents per building</dd></dl>',
+            description: '<p class="description-text">HCR directly invested more than $3.8 billion to help provide 184,192 homes to families.</p>',
             location: {
                 center: [-74.68321, 42.62950],
                 zoom: 6,
@@ -286,7 +282,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: '',
-            description: '<p class="description-text">HCR encourages Minority and Women-Owned Business Enterprises (MWBEs) and Service-Disabled Veteran-Owned Business Enterprises (SDVOBs) to participate on HCR-funded projects.<br><br> HCR encourages Minority and Women-Owned Business Enterprises (MWBEs) and Service-Disabled Veteran-Owned Business Enterprises (SDVOBs) to participate on HCR-funded projects.' +
+            description: '<p class="description-text">HCR encourages Minority and Women-Owned Business Enterprises (MWBEs) and Service-Disabled Veteran-Owned Business Enterprises (SDVOBs) to participate on HCR-funded projects.<br>' +
                 'Over the past 6 years, more than 5,000 certified MWBEs and SDVOBs have worked on HCR projects.</p>'+
             '<dl style=" width: 120px;\n' +
                 '         background: #fff;\n' +
