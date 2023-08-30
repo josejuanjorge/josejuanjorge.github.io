@@ -191,7 +191,7 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: '',
-            description: '<p class="description-text">This ranges from the recently completed 160 apartments at Brookdale Complex in Brooklyn.</p><br><iframe width="440" height="315" src="https://www.youtube.com/embed/kr5PKi2XtkY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
+            description: '<div style="flex; flex-direction: column; align-content: center; text-align: center;"><p class="description-text">This ranges from the recently completed 160 apartments at Brookdale Complex in Brooklyn.</p><br><iframe width="440" height="315" src="https://www.youtube.com/embed/kr5PKi2XtkY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>',
             location: {
                 center: [-73.755152, 40.593251],
                 zoom: 17,
@@ -281,7 +281,7 @@ var config = {
         },
         {
             id: 'extrusion-map',
-            alignment: 'fully',
+            alignment: 'left',
             hidden: false,
             title: '',
             description:'',
@@ -291,18 +291,16 @@ var config = {
                 '            justify-content: center;padding:0;\n' +
                 '            width: 100%; /* Adjust this value to control vertical centering */\n' +
                 '            text-align: center;"><p class="description-text" style="margin: 0; padding:0; text-justify: auto;\n' +
-                '    text-align: left;">Over the past 6 years, HCR’s efforts have resulted in more than $1.1 billion in MWBE utilization across New York state. HCR consistently generates some of the highest utilization of New York’s Agencies and Authorities.</p><p> </p><div id="chart_div"></div>' +
-                //  '<dl style=" width: 250px;\n' +
-                // '         background: #fff;\n' +
-                // '         border: 1px solid #000;\n' +
-                // '         padding: 5px 15px; text-align:left";>' +
-                // '<dt style="background-color:#e784f0; color:#e784f0; text-align:left ">___</dt><dd>< $ 399k</dd><br>' +
-                // '<dt style="background-color:#b429f5; color:#b429f5; text-align: left">___</dt><dd>>$ 800k - $ 2.99MM</dd><br>' +
-                // '<dt style="background-color:#a46af1; color:#a46af1; text-align: left">___</dt><dd>>$ 3MM - $ 4.99MM</dd><br>' +
-                // '<dt style="background-color:#895ff1; color:#895ff1; text-align: left">___</dt><dd>>$ 5MM - $ 15.99MM</dd><br>' +
-                // '<dt style="background-color:#6a55f1; color:#6a55f1; text-align: left">___</dt><dd>>$ 16MM - $ 29.99MM</dd><br>' +
-                // '<dt style="background-color:#4150f1; color:#4150f1; text-align: left">___</dt><dd>> $ 60 MM</dd><br>' +
-                // '</dl>'+
+                '    text-align: left;">Over the past 6 years, HCR’s efforts have resulted in more than $1.1 billion in MWBE utilization across New York state. HCR consistently generates some of the highest utilization of New York’s Agencies and Authorities.</p><p> </p><div id="chart_div">' +
+                '</div>\'<div style="display: flex; relative;top: 250px; /* Adjust this value to move the div down */">\n' +
+                '  <dl style="width: 120px; background: #fff; border: 1px solid #000; padding: 5px 15px; display: flex; flex-direction: row;">\n' +
+                '    <dt style="background-color: #442572; color: #442572; padding: 3px;">___</dt>\n' +
+                '    <dd style="margin: 2px;">WBE</dd>\n' +
+                  '    <dt style="background-color: #8C6DA4; color: #8C6DA4; padding: 3px;">___</dt>\n' +
+                '    <dd style="margin: 2px;">MBE</dd>\n' +
+                '  </dl>\n' +
+                '  \n' +
+                '</div>\n ' +
                 '</div>'
                ,
             location: {

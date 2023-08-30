@@ -38,6 +38,8 @@
           seriesType: 'bars',
           series: {2: {type: 'line'}},
           colors: ['#442572', '#8C6DA4', '#5b5b5b'],
+            // legend: { position: "bottom", maxLines: 1, alignment:'start'   },
+            legend: 'none' // Hides the Legend.
         };
 
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
@@ -62,7 +64,7 @@
          display: inline;
       }
     #chart_div {
-            width: 780px; height: 400px;
+            width: 780px; height: 700px;
             display: flex;
             justify-content: center; /* Horizontally center the children */
             align-items: center; /* Vertically center the children */
@@ -506,24 +508,22 @@ map.on("load", function() {
             .then(response => response.json())
             .then(geojsonData => {
                 // Now you can use the geojsonData variable
-                map.addSource('earthquakes', {
+                map.addSource('hcrData', {
             type: 'geojson',
-            // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
-            // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-            // data: 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson',
             data: geojsonData,
             cluster: true,
             clusterMaxZoom: 14, // Max zoom to cluster points on
-            clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+            clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
+            clusterProperties: {NumUnits_sum: ['+', ['get', 'NumUnits']]}
             });
 
-                map.addLayer({
+        map.addLayer({
         id: 'clusters',
         type: 'circle',
-        source: 'earthquakes',
+        source: 'hcrData',
         filter: ['has', 'point_count'],
         paint: {
-        'circle-opacity': 0.0,
+            'circle-opacity': 0.0,
             'circle-stroke-opacity':0.0,
 
         // Use step expressions (https://docs.mapbox.com/style-spec/reference/expressions/#step)
@@ -555,22 +555,22 @@ map.on("load", function() {
     map.addLayer({
         id: 'cluster-count',
         type: 'symbol',
-        source: 'earthquakes',
+        source: 'hcrData',
         filter: ['has', 'point_count'],
         paint: {
         'text-opacity': 0.0,
         },
         layout: {
-        'text-field': ['get', 'point_count_abbreviated'],
+        'text-field': ['get', 'NumUnits_sum'],
         'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-        'text-size': 12
-        }
+        'text-size': 12,
+        },
     });
 
     map.addLayer({
         id: 'unclustered-point',
         type: 'circle',
-        source: 'earthquakes',
+        source: 'hcrData',
         filter: ['!', ['has', 'point_count']],
 
         paint: {
@@ -630,7 +630,7 @@ map.on("load", function() {
     .onStepEnter(async response => {
         var current_chapter = config.chapters.findIndex(chap => chap.id === response.element.id);
         var chapter = config.chapters[current_chapter];
-        
+
         response.element.classList.add('active');
         map[chapter.mapAnimation || 'flyTo'](chapter.location);
 
