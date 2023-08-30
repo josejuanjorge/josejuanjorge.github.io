@@ -30,7 +30,7 @@ var config = {
         '        }" href="https://josejuanjorge.github.io/src/opportunities.html"><b>ALL OPPORTUNITIES</b></a>',
     chapters: [
         {
-            id: 'start',
+            id: 'hidden-chapter-one-hcr-buildings',
             alignment: 'left',
             hidden: true,
             title: '',
@@ -55,13 +55,15 @@ var config = {
                     layer: 'buildings-hcr',
                     opacity: 1.0,
                     duration: 0
-                }
+                },
+
             ],
             onChapterExit: [
+
             ]
         },
         {
-            id: 'total_portfolio',
+            id: 'chapter-one-hcr-buildings',
             alignment: 'left',
             hidden: false,
             title: '',
@@ -76,32 +78,23 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
-
-            ],
-            onChapterExit: [
                 {
                     layer: 'nys-boundary-boundary',
-                    opacity: 0.0,
-                    duration: 500
-                },
-                                {
-                    layer: 'buildings-hcr',
-                    opacity: 0.0,
-                    duration: 500
-                }     ,           {
-                    layer: 'nys-boundary-boundary',
                     opacity: 1.0,
-                    duration: 500
+                    duration: 0
                 },
                                 {
                     layer: 'buildings-hcr',
                     opacity: 1.0,
-                    duration: 500
-                },
+                    duration: 0
+                }
+            ],
+            onChapterExit: [
+
             ]
         },
         {
-            id: 'total_portfolio_full_view',
+            id: 'chapter-one-hcr-buildings-full_view',
             alignment: 'left',
             hidden: true,
             title: '',
@@ -116,29 +109,10 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
-                {
-                    layer: 'nys-boundary-boundary',
-                    opacity: 1.0,
-                    duration: 0
-                },
-                                {
-                    layer: 'buildings-hcr',
-                    opacity: 1.0,
-                    duration: 0
-                },
-                {
-                    layer: 'buildings-hcr-dot-density',
-                    opacity: 0.0,
-                    duration: 500
-                },
-                {
-                    layer: 'nys-boundary',
-                    opacity: 0.0,
-                    duration: 500
-                },
+
             ],
             onChapterExit: [
-                 {
+                  {
                     layer: 'nys-boundary-boundary',
                     opacity: 0.0,
                     duration: 500
@@ -146,22 +120,12 @@ var config = {
                                 {
                     layer: 'buildings-hcr',
                     opacity: 0.0,
-                    duration: 500
-                },
-                {
-                    layer: 'buildings-hcr-dot-density',
-                    opacity: 0.65,
-                    duration: 500
-                },
-                {
-                    layer: 'nys-boundary',
-                    opacity: 0.30,
                     duration: 500
                 },
             ]
         },
         {
-            id: 'second-identifier',
+            id: 'chapter-two-full_view-heatmap',
             alignment: 'right',
             hidden: false,
             title: '',
@@ -171,42 +135,59 @@ var config = {
                 zoom: 6,
                 pitch: 30,
                 bearing: 0,
-                speed: 1, // make the flying slow
+                // speed: 0.3, // make the flying slow
                 // curve: 1, // change the speed at which it zooms out
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            onChapterEnter: [
-                {
-                    layer: 'mapbox-satellite',
-                    opacity: 0.0,
-                    duration: 500
-                },
-                {
-                    layer: 'buildings-hcr-dot-density',
+             onChapterEnter: [
+                // {
+                //     layer: 'buildings-hcr-dot-density',
+                //     opacity: 0.65,
+                //     duration: 500
+                // },
+                 {
+                    layer: 'clusters',
                     opacity: 0.65,
                     duration: 500
-                },
-                {
-                    layer: 'nys-boundary',
-                    opacity: 0.30,
+                 },
+                 {
+                    layer: 'cluster-count',
+                    opacity: 0.65,
+                    duration: 500,
+                 },
+                 {
+                    layer: 'unclustered-point',
+                    opacity: 0.65,
                     duration: 500
-                },
-                ],
-            onChapterExit: [  {
-                    layer: 'buildings-hcr-dot-density',
+                 },
+            ],
+            onChapterExit: [
+                // {
+                //     layer: 'buildings-hcr-dot-density',
+                //     opacity: 0.0,
+                //     duration: 500
+                // },
+                 {
+                    layer: 'clusters',
                     opacity: 0.0,
                     duration: 500
-                },
-                {
-                    layer: 'nys-boundary',
+                 },
+                 {
+                    layer: 'cluster-count',
                     opacity: 0.0,
                     duration: 500
-                },]
+                 },
+                 {
+                    layer: 'unclustered-point',
+                    opacity: 0.0,
+                    duration: 500
+                 },
+            ]
         },
         {
-            id: 'zoom_in',
+            id: 'chapter-three-building-zoom_in',
             alignment: 'left',
             hidden: false,
             title: '',
@@ -220,20 +201,15 @@ var config = {
             mapAnimation: 'flyTo',
             rotateAnimation: true,
             callback: '',
-            onChapterEnter: [{
-                    layer: 'mapbox-satellite',
-                    opacity: 1.0,
-                    duration: 1000
-                },],
-            onChapterExit: [{
-                    layer: 'buildings-hcr-dot-density',
-                    opacity: 0.0,
-                    duration: 1000
-                },
+            onChapterEnter: [
+
+            ],
+            onChapterExit: [
+
             ]
         },
         {
-            id: 'zoom-in-two',
+            id: 'chapter-four-building-zoom_in-two',
             alignment: 'right',
             hidden: false,
             title: '',
@@ -249,40 +225,19 @@ var config = {
             mapAnimation: 'flyTo',
             rotateAnimation: true,
             callback: '',
-            onChapterEnter: [{
-                    layer: 'new-projects',
-                    opacity: 0.0,
-                    duration: 0
-                },   {
-                    layer: 'axi-organization-data',
-                    opacity: 0.0,
-                    duration: 500,
-                },{
-                    layer: 'nys-boundary-boundary',
-                    opacity: 0.0,
-                    duration: 0
-                },      ],
-            onChapterExit: [                                {
-                    layer: '3D-extrusions',
-                    opacity: 0.7,
-                    duration: 1000,
-                },
-                {
-                    layer: '3D-extrusions-labels',
-                    opacity: 0.7,
-                    duration: 1000,
-                },{
-                    layer: 'mapbox-satellite',
-                    opacity: 0.0,
-                    duration: 500
-                },]
+            onChapterEnter: [
+
+            ],
+            onChapterExit: [
+
+            ]
         },
         {
-            id: 'just-data',
+            id: 'chapter-five-axi-data',
             alignment: 'right',
             hidden: false,
             title: '',
-            description: '<p class="description-text">HCR encourages Minority and Women-Owned Business Enterprises (MWBEs) and Service-Disabled Veteran-Owned Business Enterprises (SDVOBs) to participate on HCR-funded projects.<br>' +
+            description: '<p class="description-text">HCR encourages Minority and Women-Owned Business Enterprises (MWBEs) and Service-Disabled Veteran-Owned Business Enterprises (SDVOBs) to participate on HCR-funded projects. ' +
                 'Over the past 6 years, more than 5,000 certified MWBEs and SDVOBs have worked on HCR projects.</p>'+
             '<dl style=" width: 120px;\n' +
                 '         background: #fff;\n' +
@@ -302,32 +257,31 @@ var config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            onChapterEnter: [ {
-                    layer: 'mapbox-satellite',
-                    opacity: 0.0,
-                    duration: 0
-                },{
+            onChapterEnter: [
+                {
                     layer: 'axi-organization-data',
                     opacity: 0.6,
                     duration: 500,
                 },{
                     layer: 'nys-boundary-boundary',
                     opacity: 1.0,
-                    duration: 0
-                },  ],
-            onChapterExit: [  {
-                    layer: 'axi-organization-data',
+                    duration: 500
+                },
+                ],
+            onChapterExit: [
+                {layer: 'axi-organization-data',
                     opacity: 0.0,
                     duration: 500,
                 },{
                     layer: 'nys-boundary-boundary',
                     opacity: 0.0,
-                    duration: 0
-                },  ]
+                    duration: 500
+                },
+            ]
         },
         {
             id: 'extrusion-map',
-            alignment: 'left',
+            alignment: 'fully',
             hidden: false,
             title: '',
             description:'',
@@ -337,18 +291,18 @@ var config = {
                 '            justify-content: center;padding:0;\n' +
                 '            width: 100%; /* Adjust this value to control vertical centering */\n' +
                 '            text-align: center;"><p class="description-text" style="margin: 0; padding:0; text-justify: auto;\n' +
-                '    text-align: left;">Over the past 6 years, HCR’s efforts have resulted in more than $1.1 billion in MWBE utilization across New York state. HCR consistently generates some of the highest utilization of New York’s Agencies and Authorities.</p><div id="chart_div""></div>' +
-                 '<dl style=" width: 250px;\n' +
-                '         background: #fff;\n' +
-                '         border: 1px solid #000;\n' +
-                '         padding: 5px 15px; text-align:left";>' +
-                '<dt style="background-color:#e784f0; color:#e784f0; text-align:left ">___</dt><dd>< $ 399k</dd><br>' +
-                '<dt style="background-color:#b429f5; color:#b429f5; text-align: left">___</dt><dd>>$ 800k - $ 2.99MM</dd><br>' +
-                '<dt style="background-color:#a46af1; color:#a46af1; text-align: left">___</dt><dd>>$ 3MM - $ 4.99MM</dd><br>' +
-                '<dt style="background-color:#895ff1; color:#895ff1; text-align: left">___</dt><dd>>$ 5MM - $ 15.99MM</dd><br>' +
-                '<dt style="background-color:#6a55f1; color:#6a55f1; text-align: left">___</dt><dd>>$ 16MM - $ 29.99MM</dd><br>' +
-                '<dt style="background-color:#4150f1; color:#4150f1; text-align: left">___</dt><dd>> $ 60 MM</dd><br>' +
-                '</dl>'+
+                '    text-align: left;">Over the past 6 years, HCR’s efforts have resulted in more than $1.1 billion in MWBE utilization across New York state. HCR consistently generates some of the highest utilization of New York’s Agencies and Authorities.</p><p> </p><div id="chart_div"></div>' +
+                //  '<dl style=" width: 250px;\n' +
+                // '         background: #fff;\n' +
+                // '         border: 1px solid #000;\n' +
+                // '         padding: 5px 15px; text-align:left";>' +
+                // '<dt style="background-color:#e784f0; color:#e784f0; text-align:left ">___</dt><dd>< $ 399k</dd><br>' +
+                // '<dt style="background-color:#b429f5; color:#b429f5; text-align: left">___</dt><dd>>$ 800k - $ 2.99MM</dd><br>' +
+                // '<dt style="background-color:#a46af1; color:#a46af1; text-align: left">___</dt><dd>>$ 3MM - $ 4.99MM</dd><br>' +
+                // '<dt style="background-color:#895ff1; color:#895ff1; text-align: left">___</dt><dd>>$ 5MM - $ 15.99MM</dd><br>' +
+                // '<dt style="background-color:#6a55f1; color:#6a55f1; text-align: left">___</dt><dd>>$ 16MM - $ 29.99MM</dd><br>' +
+                // '<dt style="background-color:#4150f1; color:#4150f1; text-align: left">___</dt><dd>> $ 60 MM</dd><br>' +
+                // '</dl>'+
                 '</div>'
                ,
             location: {
@@ -356,22 +310,26 @@ var config = {
                 zoom: 9.01,
                 pitch: 45.04,
                 bearing: 0,
-                // flyTo additional controls-
-                // These options control the flight curve, making it move
-                // slowly and zoom out almost completely before starting
-                // to pan.
                 speed: 2, // make the flying slow
                 curve: 1, // change the speed at which it zooms out
             },
             mapAnimation: 'flyTo',
             rotateAnimation: true,
             callback: '',
-            onChapterEnter: [  {
-                    layer: 'new-projects',
-                    opacity: 0.0,
-                    duration: 0
-                },   ],
-            onChapterExit: [ {
+            onChapterEnter: [
+                    {
+                    layer: '3D-extrusions',
+                    opacity: 0.7,
+                    duration: 1000,
+                },
+                {
+                    layer: '3D-extrusions-labels',
+                    opacity: 0.7,
+                    duration: 1000,
+                }
+                ],
+            onChapterExit: [
+                    {
                     layer: '3D-extrusions',
                     opacity: 0.0,
                     duration: 1000,
@@ -380,7 +338,8 @@ var config = {
                     layer: '3D-extrusions-labels',
                     opacity: 0.0,
                     duration: 1000,
-                },]
+                }
+            ]
         },
         {
             id: 'active-projects',
@@ -397,22 +356,31 @@ var config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            onChapterEnter: [{
+            onChapterEnter: [
+                {
                     layer: 'new-projects',
                     opacity: 1.0,
-                    duration: 0
+                    duration: 500
                 },  {
                   layer: 'nys-boundary',
                     opacity: 0.25,
                     duration: 0
 
-            } ,{
-                  layer: 'nys-boundary-boundary',
+            }
+            ],
+            onChapterExit: [
+                {
+                    layer: 'new-projects',
+                    opacity: 0.0,
+                    duration: 500
+                },
+                {
+                  layer: 'nys-boundary',
                     opacity: 0.0,
                     duration: 0
 
-            }  ],
-            onChapterExit: [    ]
+            }
+            ]
         },{
             id: 'active-projects-full',
             alignment: 'fully',
@@ -428,22 +396,22 @@ var config = {
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
-            onChapterEnter: [   {
-                    layer: 'new-projects',
-                    opacity: 0.0,
-                    duration: 0
-                },{
+            onChapterEnter: [
+   {
                   layer: 'nys-boundary',
-                    opacity: 0.0,
-                    duration: 1000
+                    opacity: 0.3,
+                    duration: 0
 
-            } ,{
-                  layer: 'nys-boundary-boundary',
-                    opacity: 1.0,
-                    duration: 1000
+            }
+            ],
+            onChapterExit: [
+                  {
+                  layer: 'nys-boundary',
+                    opacity: 0.3,
+                    duration: 0
 
-            }   ],
-            onChapterExit: [   ]
+            }
+            ]
         }
     ]
 };
