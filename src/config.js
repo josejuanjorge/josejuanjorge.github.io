@@ -22,12 +22,13 @@ var config = {
         '    </div>\n' +
         '</div>'+
     ' <div  style="width:auto;height:420px; background-color:#8a7a9a; text-align: center;" ;><img src="./images/banner.png" alt="HCR Logo" style="max-width: 100%; max-height: 100%;";></div>',
-    footer: '<h2>If you are interested in becoming a prime or sub contractor, please view HCR’s future opportunities.</h2><a style="background-color: white;\n' +
-        '    color: grey;\n' +
-        '    padding: 8px 16px;\n' +
-        '    border-radius: 4px;  \n' +
-        '    text-decoration: none;' +
-        '        }" href="https://josejuanjorge.github.io/src/opportunities.html"><b>ALL OPPORTUNITIES</b></a>',
+    // footer: '<h2>If you are interested in becoming a prime or sub contractor, please view HCR’s future opportunities.</h2><a style="background-color: white;\n' +
+    //     '    color: grey;\n' +
+    //     '    padding: 8px 16px;\n' +
+    //     '    border-radius: 4px;  \n' +
+    //     '    text-decoration: none;' +
+    //     '        }" href="https://josejuanjorge.github.io/src/opportunities.html"><b>ALL OPPORTUNITIES</b></a>',
+        footer: ' ',
     chapters: [
         {
             id: 'hidden-chapter-one-hcr-buildings',
@@ -243,8 +244,8 @@ var config = {
                 '         background: #fff;\n' +
                 '         border: 1px solid #000;\n' +
                 '         padding: 5px 15px; align-content: flex-start;">' +
-                '<dt style="background-color:#202bf8; text-color:#202bf8">___</dt><dd>WBE</dd><br>' +
-                '<dt style="background-color:#b429f5; text-color:#b429f5">___</dt><dd>MBE</dd><br>' +
+                '<dt style="background-color:#b429f5; text-color:#b429f5">___</dt><dd>WBE</dd><br>' +
+                '<dt style="background-color:#442572; text-color:#442572">___</dt><dd>MBE</dd><br>' +
                 '</dl>',
             location: {
                 center: [-74.68321, 42.62950],
@@ -292,15 +293,15 @@ var config = {
                 '            width: 100%; /* Adjust this value to control vertical centering */\n' +
                 '            text-align: center;"><p class="description-text" style="margin: 0; padding:0; text-justify: auto;\n' +
                 '    text-align: left;">Over the past 6 years, HCR’s efforts have resulted in more than $1.1 billion in MWBE utilization across New York state. HCR consistently generates some of the highest utilization of New York’s Agencies and Authorities.</p><p> </p><div id="chart_div">' +
-                '</div>\'<div style="display: flex; relative;top: 250px; /* Adjust this value to move the div down */">\n' +
-                '  <dl style="width: 120px; background: #fff; border: 1px solid #000; padding: 5px 15px; display: flex; flex-direction: row;">\n' +
-                '    <dt style="background-color: #442572; color: #442572; padding: 3px;">___</dt>\n' +
-                '    <dd style="margin: 2px;">WBE</dd>\n' +
-                  '    <dt style="background-color: #8C6DA4; color: #8C6DA4; padding: 3px;">___</dt>\n' +
-                '    <dd style="margin: 2px;">MBE</dd>\n' +
-                '  </dl>\n' +
-                '  \n' +
-                '</div>\n ' +
+                // '</div>\'<div style="display: flex; relative;top: 250px; /* Adjust this value to move the div down */">\n' +
+                // '  <dl style="width: 120px; background: #fff; border: 1px solid #000; padding: 5px 15px; display: flex; flex-direction: row;">\n' +
+                // '    <dt style="background-color: #442572; color: #442572; padding: 3px;">___</dt>\n' +
+                // '    <dd style="margin: 2px;">WBE</dd>\n' +
+                //   '    <dt style="background-color: #8C6DA4; color: #8C6DA4; padding: 3px;">___</dt>\n' +
+                // '    <dd style="margin: 2px;">MBE</dd>\n' +
+                // '  </dl>\n' +
+                // '  \n' +
+                // '</div>\n ' +
                 '</div>'
                ,
             location: {
@@ -344,7 +345,10 @@ var config = {
             alignment: 'fully',
             hidden: false,
             title: '',
-            description: '<p class="description-text">HCR currently has 300 active developments with hundreds of new projects coming.</p>',
+            description: '<div style="flex;"><p class="description-text">HCR currently has 300 active developments with hundreds of new projects coming. '+
+            'If you are interested in becoming a prime or sub contractor, please view HCR’s future opportunities.</p><div style="display: block; margin: 0 auto; flex; text-align: center"><a style="  background-color: white; color: grey; padding: 8px 16px; border-radius: 4px; text-decoration: none; ' +
+        '        }" href="https://josejuanjorge.github.io/src/opportunities.html"><b>ALL OPPORTUNITIES</b></a></div></div>'
+            ,
             location: {
                 center: [-74.68321, 42.62950],
                 zoom: 6.5,
@@ -384,7 +388,14 @@ var config = {
             alignment: 'fully',
             hidden: true,
             title: '',
-            description: '<p class="description-text">HCR currently has 300 active developments with hundreds of new projects coming.</p>',
+            description: '<p class="description-text">HCR currently has 300 active developments with hundreds of new projects coming.</p><br>'+
+            '<p>If you are interested in becoming a prime or sub contractor, please view HCR’s future opportunities.</p><a style="background-color: white;\n' +
+        '    color: grey;\n' +
+        '    padding: 8px 16px;\n' +
+        '    border-radius: 4px;  \n' +
+        '    text-decoration: none;' +
+        '        }" href="https://josejuanjorge.github.io/src/opportunities.html"><b>ALL OPPORTUNITIES</b></a>'
+            ,
             location: {
                 center: [-75.28321, 42.25950],
                 zoom: 6.3,

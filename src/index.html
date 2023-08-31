@@ -18,28 +18,27 @@
 
       function drawVisualization() {
         var data = google.visualization.arrayToDataTable([
-          ['Year', 'MBE  ($M)', 'WBE  ($M)', 'Total ($M)'],
-            ['2016/2017', 85.12, 65.95, 151.06],
-            ['2017/2018', 132.84, 95.08, 227.92],
-            ['2018/2019', 111.28, 64.33, 175.60],
-            ['2019/2020', 87.16, 82.70, 169.86],
-            ['2020/2021', 118.52, 68.89, 187.40],
-            ['2021/2022', 120.01, 68.25, 188.26],
+          ['Year', 'MBE  ($M)', 'WBE  ($M)'],
+            ['2016/2017', 85.12, 65.95],
+            ['2017/2018', 132.84, 95.08],
+            ['2018/2019', 111.28, 64.33],
+            ['2019/2020', 87.16, 82.70],
+            ['2020/2021', 118.52, 68.89],
+            ['2021/2022', 120.01, 68.25],
         ]);
 
         var options = {
           title : 'Spending per year',
-            chartArea: {width: '60%'},
+            chartArea: {width: '70%'},
           vAxis: {
               title: 'Utilization ($M)',
-              ticks: [ 0, 50, 100, 150, 200, 250],
+              ticks: [ 0, 50, 100],
              },
           hAxis: {title: 'Year'},
           seriesType: 'bars',
-          series: {2: {type: 'line'}},
-          colors: ['#442572', '#8C6DA4', '#5b5b5b'],
-            // legend: { position: "bottom", maxLines: 1, alignment:'start'   },
-            legend: 'none' // Hides the Legend.
+          colors: ['#442572', '#8C6DA4'],
+            legend: { position: "bottom", maxLines: 1, alignment:'center'   },
+            // legend: 'none' // Hides the Legend.
         };
 
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
@@ -64,7 +63,7 @@
          display: inline;
       }
     #chart_div {
-            width: 780px; height: 700px;
+            width: 100%; height: 700px;
             display: flex;
             justify-content: center; /* Horizontally center the children */
             align-items: center; /* Vertically center the children */
