@@ -11,24 +11,18 @@ var config = {
     use3dTerrain: false, //set true for enabling 3D maps.
     auto: false,
     // titleImage: './images/hcr_logo.png',
-    subtitleWithVideo: '<div>\n' +
-        '    <div class="content">\n' +
-        '        <div class="text">\n' +
-        '            <h2 style="font-weight: normal;"><p>HCR develops, preserves and protects affordable housing and invests in New York’s economically vibrant communities. We work with many private, public and nonprofit partners to create safe, healthy and affordable housing opportunities for all New Yorkers.</p><p>This new website presents HCR’s portfolio of developments and highlights opportunities for developers, primes, and subcontractors to explore future opportunities and report utilization on existing projects.</p></h2>\n' +
-        '        </div>\n' +
-        '        <div class="video">\n' +
-        '           <p><iframe width="500" height="315" src="https://www.youtube.com/embed/WwrSqxyuAkM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>\n' +
-        '        </div>\n' +
-        '    </div>\n' +
-        '</div>'+
-    ' <div  style="width:auto;height:420px; background-color:#8a7a9a; text-align: center;" ;><img src="./images/banner.png" alt="HCR Logo" style="max-width: 100%; max-height: 100%;";></div>',
-    // footer: '<h2>If you are interested in becoming a prime or sub contractor, please view HCR’s future opportunities.</h2><a style="background-color: white;\n' +
-    //     '    color: grey;\n' +
-    //     '    padding: 8px 16px;\n' +
-    //     '    border-radius: 4px;  \n' +
-    //     '    text-decoration: none;' +
-    //     '        }" href="https://josejuanjorge.github.io/src/opportunities.html"><b>ALL OPPORTUNITIES</b></a>',
-        footer: ' ',
+    // subtitleWithVideo: '<div>\n' +
+    //     '    <div class="content">\n' +
+    //     '        <div class="text">\n' +
+    //     '            <h2 style="font-weight: normal;"><p>HCR develops, preserves and protects affordable housing and invests in New York’s economically vibrant communities. We work with many private, public and nonprofit partners to create safe, healthy and affordable housing opportunities for all New Yorkers.</p><p>This new website presents HCR’s portfolio of developments and highlights opportunities for developers, primes, and subcontractors to explore future opportunities and report utilization on existing projects.</p></h2>\n' +
+    //     '        </div>\n' +
+    //     '        <div class="video">\n' +
+    //     '           <p><iframe width="500" height="315" src="https://www.youtube.com/embed/WwrSqxyuAkM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>\n' +
+    //     '        </div>\n' +
+    //     '    </div>\n' +
+    //     '</div>'+
+    // ' <div  style="width:auto;height:420px; background-color:#8a7a9a; text-align: center;" ;><img src="./images/banner.png" alt="HCR Logo" style="max-width: 100%; max-height: 100%;";></div>',
+    //     footer: ' ',
     chapters: [
         {
             id: 'hidden-chapter-one-hcr-buildings',
@@ -130,7 +124,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: '',
-            description: '<p class="description-text">HCR directly invested more than $3.8 billion to help provide 184,192 homes to families.</p>',
+            description: '<p class="description-text">HCR directly invested more than $3.8 billion to help provide 184,192 homes to families.</p><br><div style="flex; flex-direction: column; align-content: center; text-align: center;"><iframe width="430" height="315" src="https://www.youtube.com/embed/WwrSqxyuAkM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>',
             location: {
                 center: [-74.68321, 42.62950],
                 zoom: 6,
@@ -192,7 +186,7 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: '',
-            description: '<div style="flex; flex-direction: column; align-content: center; text-align: center;"><p class="description-text">This ranges from the recently completed 160 apartments at Brookdale Complex in Brooklyn.</p><br><iframe width="440" height="315" src="https://www.youtube.com/embed/kr5PKi2XtkY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>',
+            description: '<p class="description-text">This ranges from the recently completed 160 apartments at Brookdale Complex in Brooklyn.</p><div style="flex; flex-direction: column; align-content: center; text-align: center;"><br><iframe width="430" height="315" src="https://www.youtube.com/embed/kr5PKi2XtkY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>',
             location: {
                 center: [-73.755152, 40.593251],
                 zoom: 17,
