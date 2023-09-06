@@ -562,7 +562,11 @@ map.on("load", function() {
         'text-opacity': 0.0,
         },
         layout: {
-        'text-field': ['get', 'NumUnits_sum'],
+        'text-field':[
+            'number-format',
+            ['get', 'NumUnits_sum'],
+            { 'min-fraction-digits': 0, 'max-fraction-digits': 0 }
+            ],
         'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
         'text-size': 12,
         },
