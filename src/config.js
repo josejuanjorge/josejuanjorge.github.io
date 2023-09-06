@@ -232,8 +232,8 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: '',
-            description: '<p class="description-text">HCR encourages Minority and Women-Owned Business Enterprises (MWBEs) and Service-Disabled Veteran-Owned Business Enterprises (SDVOBs) to participate on HCR-funded projects. ' +
-                'Over the past 6 years, more than 5,000 certified MWBEs and SDVOBs have worked on HCR projects.</p>'+
+            description: '<p class="description-text">HCR encourages Minority and Women-Owned Business Enterprises (MWBEs) and Service-Disabled Veteran-Owned Business Enterprises (SDVOBs) to participate on HCR-funded projects.</p> ' +
+                '<p class="description-text">Over the past 6 years, more than 5,000 certified MWBEs and SDVOBs have worked on HCR projects.</p>'+
             '<dl style=" width: 120px;\n' +
                 '         background: #fff;\n' +
                 '         border: 1px solid #000;\n' +
@@ -286,17 +286,8 @@ var config = {
                 '            justify-content: center;padding:0;\n' +
                 '            width: 100%; /* Adjust this value to control vertical centering */\n' +
                 '            text-align: center;"><p class="description-text" style="margin: 0; padding:0; text-justify: auto;\n' +
-                '    text-align: left;">Over the past 6 years, HCR’s efforts have resulted in more than $1.1 billion in MWBE utilization across New York state. HCR consistently generates some of the highest utilization of New York’s Agencies and Authorities.</p><p> </p><div id="chart_div">' +
-                // '</div>\'<div style="display: flex; relative;top: 250px; /* Adjust this value to move the div down */">\n' +
-                // '  <dl style="width: 120px; background: #fff; border: 1px solid #000; padding: 5px 15px; display: flex; flex-direction: row;">\n' +
-                // '    <dt style="background-color: #442572; color: #442572; padding: 3px;">___</dt>\n' +
-                // '    <dd style="margin: 2px;">WBE</dd>\n' +
-                //   '    <dt style="background-color: #8C6DA4; color: #8C6DA4; padding: 3px;">___</dt>\n' +
-                // '    <dd style="margin: 2px;">MBE</dd>\n' +
-                // '  </dl>\n' +
-                // '  \n' +
-                // '</div>\n ' +
-                '</div>'
+                '    text-align: left;">Over the past 6 years, HCR’s efforts have resulted in more than $1.1 billion in MWBE utilization across New York state. HCR consistently generates some of the highest utilization of New York’s Agencies and Authorities.</p><p> </p><div id="chart_div" style="background: white; ">' +
+                '<canvas id="chart_canvas"></canvas>\n</div>'
                ,
             location: {
                 center: [-73.948114, 40.831623],

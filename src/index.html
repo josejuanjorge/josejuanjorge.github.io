@@ -11,40 +11,42 @@
     <script src="https://unpkg.com/scrollama"></script>
 
         <!--Load the Chart-->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawVisualization) ;
+<!--    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-      function drawVisualization() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'MBE  ($M)', 'WBE  ($M)'],
-            ['2016/2017', 85.12, 65.95],
-            ['2017/2018', 132.84, 95.08],
-            ['2018/2019', 111.28, 64.33],
-            ['2019/2020', 87.16, 82.70],
-            ['2020/2021', 118.52, 68.89],
-            ['2021/2022', 120.01, 68.25],
-        ]);
+<!--    <script type="text/javascript">-->
+<!--      google.charts.load('current', {'packages':['corechart']});-->
+<!--      google.charts.setOnLoadCallback(drawVisualization) ;-->
 
-        var options = {
-          title : 'Spending per year',
-            chartArea: {width: '70%'},
-          vAxis: {
-              title: 'Utilization ($M)',
-              ticks: [ 0, 50, 100],
-             },
-          hAxis: {title: 'Year'},
-          seriesType: 'bars',
-          colors: ['#442572', '#8C6DA4'],
-            legend: { position: "bottom", maxLines: 1, alignment:'center'   },
-            // legend: 'none' // Hides the Legend.
-        };
+<!--      function drawVisualization() {-->
+<!--        var data = google.visualization.arrayToDataTable([-->
+<!--          ['Year', 'MBE ($M)', 'WBE ($M)'],-->
+<!--            ['2017', 85.12, 65.95],-->
+<!--            ['2018', 132.84, 95.08],-->
+<!--            ['2019', 111.28, 64.33],-->
+<!--            ['2020', 87.16, 82.70],-->
+<!--            ['2021', 118.52, 68.89],-->
+<!--            ['2022', 120.01, 68.25],-->
+<!--        ]);-->
 
-        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>
+<!--        var options = {-->
+<!--          title : 'Spending per year',-->
+<!--            chartArea: {width: '70%'},-->
+<!--          vAxis: {-->
+<!--              title: 'Utilization ($M)',-->
+<!--              ticks: [ 0, 50, 100],-->
+<!--             },-->
+<!--          hAxis: {title: 'Year'},-->
+<!--          seriesType: 'bars',-->
+<!--          colors: ['#442572', '#8C6DA4'],-->
+<!--            legend: { position: "bottom", maxLines: 1, alignment:'center'   },-->
+<!--            // legend: 'none' // Hides the Legend.-->
+<!--        };-->
+
+<!--        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));-->
+<!--        chart.draw(data, options);-->
+<!--      }-->
+<!--    </script>-->
 
 
 
@@ -63,7 +65,7 @@
          display: inline;
       }
     #chart_div {
-            width: 100%; height: 700px;
+            width: 60%; height: 400px;
             display: flex;
             justify-content: center; /* Horizontally center the children */
             align-items: center; /* Vertically center the children */
@@ -771,6 +773,66 @@ function updateInsetLayer(bounds) {
 window.addEventListener('resize', scroller.resize);
 
 </script>
+<script>
+      // Data
+      var data = {
+        labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
+        datasets: [
+          {
+            label: 'MBE ($M)',
+            backgroundColor: '#442572',
+            data: [85.12, 132.84, 111.28, 87.16, 118.52, 120.01],
+          },
+          {
+            label: 'WBE ($M)',
+            backgroundColor: '#8C6DA4',
+            data: [65.95, 95.08, 64.33, 82.70, 68.89, 68.25],
+          },
+        ],
+      };
 
+      // Options
+      var options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Year',
+            },
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Utilization ($M)',
+            },
+            ticks: {
+              stepSize: 50,
+              min: 0,
+              max: 150,
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            position: 'bottom',
+            align: 'center',
+            display: true,
+            labels: {
+              usePointStyle: true,
+            },
+          },
+        },
+      };
+
+      // Create Chart
+      var ctx = document.getElementById("chart_canvas").getContext('2d');
+      var chart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options,
+      });
+    </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="https://cdn.tailwindcss.com"></script>
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
   <meta charset="utf-8">
@@ -89,28 +90,28 @@ padding: 0;
     overflow-y: auto;
   }
 
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 0.9em;
-      min-with:400px;
-      font-family:sans-serif;
-      border-radius: 5px 5px 0 0;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(0, 0,0, 0.15);
-  }
+  /*table {*/
+  /*  border-collapse: collapse;*/
+  /*  width: 100%;*/
+  /*  font-size: 0.9em;*/
+  /*    min-with:400px;*/
+  /*    font-family:sans-serif;*/
+  /*    border-radius: 5px 5px 0 0;*/
+  /*    overflow: hidden;*/
+  /*    box-shadow: 0 0 20px rgba(0, 0,0, 0.15);*/
+  /*}*/
 
-  th, td {
-    padding: 8px;
-    text-align: left;
-  }
+  /*th, td {*/
+  /*  padding: 8px;*/
+  /*  text-align: left;*/
+  /*}*/
 
-  th {
-    background-color: #442572;
-      text-align: left;
-      font-weight: bold;
-      color: white;
-  }
+  /*th {*/
+  /*  background-color: #442572;*/
+  /*    text-align: left;*/
+  /*    font-weight: bold;*/
+  /*    color: white;*/
+  /*}*/
 
   .mapboxgl-popup {
 max-width: 400px;
@@ -118,17 +119,18 @@ font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
 
-#table-container table tr:nth-last-of-type(even) {
-  background-color: #f3f3f3;
-}
+/*#table-container table tr:nth-last-of-type(even) {*/
+/*  background-color: #f3f3f3;*/
+/*}*/
 
-#table-container table tr:last-of-type {
-  border-bottom:2px solid #442572;
-}
+/*#table-container table tr:last-of-type {*/
+/*  border-bottom:2px solid #442572;*/
+/*}*/
 
-  /* Add this CSS to style the selected row */
+/*  !* Add this CSS to style the selected row *!*/
 #table-container table tr.selected {
-  background-color: #cce5ff;
+  background-color: lightgray;
+    background-blend-mode: color-burn;
     font-weight: bold;
 }
 </style>
@@ -149,12 +151,12 @@ font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   <div id='map'>
   </div>
   <div id='table-container'>
-    <table class="content-table">
+    <table class="h-screen min-w-full divide-y divide-gray-300 overflow-y-auto">
       <tr>
-        <th>Project ID</th>
-        <th>Property Name</th>
-        <th>Address</th>
-        <th>Num Buildings</th>
+        <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Project ID</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Property Name</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Address</th>
+        <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Num Buildings</th>
       </tr>
       <!-- Use JavaScript to populate the table rows -->
     </table>
@@ -294,21 +296,42 @@ for (const marker of geojson.features) {
   });
 
   // Populate the table
+    // Create a <tr> element
     const tableRow = document.createElement('tr');
+
+    // Add Tailwind CSS classes to the <tr> element
+    tableRow.classList.add('divide-y', 'divide-gray-200');
+
+    // Set other attributes for the <tr> element
     tableRow.setAttribute('id', `row_${marker.properties.id}`);
     tableRow.setAttribute('location', marker.geometry.coordinates);
+
+    // Create <td> elements for the table cells
     const idCell = document.createElement('td');
     idCell.textContent = marker.properties.id;
+
     const nameCell = document.createElement('td');
     nameCell.textContent = marker.properties.propertyName;
+
     const addressCell = document.createElement('td');
     addressCell.textContent = marker.properties.address;
+
     const numBuildingsCell = document.createElement('td');
     numBuildingsCell.textContent = marker.properties.numBuildings;
+
+    // Add Tailwind CSS classes to the <td> elements
+    idCell.classList.add('whitespace-nowrap', 'py-4', 'pl-4', 'pr-3', 'text-sm', 'font-medium', 'text-gray-900', 'sm:pl-0');
+    nameCell.classList.add('whitespace-nowrap', 'px-3', 'py-4', 'text-sm', 'text-gray-500');
+    addressCell.classList.add('whitespace-nowrap', 'px-3', 'py-4', 'text-sm', 'text-gray-500');
+    numBuildingsCell.classList.add('whitespace-nowrap', 'px-3', 'py-4', 'text-sm', 'text-gray-500');
+
+    // Append the <td> elements to the <tr> element
     tableRow.appendChild(idCell);
     tableRow.appendChild(nameCell);
     tableRow.appendChild(addressCell);
     tableRow.appendChild(numBuildingsCell);
+
+    // Append the <tr> element to the table
     tableContainer.querySelector('table').appendChild(tableRow);
   }
 
