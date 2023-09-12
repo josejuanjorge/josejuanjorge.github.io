@@ -189,13 +189,13 @@ const deckgl = new DeckGL({
     latitude: 42.62950,
     zoom: 6.7,
     minZoom: 5,
-    maxZoom: 15,
+    maxZoom: 30,
     pitch: 40.5
   },
   controller: true
 });
 
-const data = d3.csv('./data/axi_lon_lat_data.csv');
+const data = d3.csv('./data/lat_lon_all_orgs.csv');
 
 const OPTIONS = ['radius', 'coverage', 'upperPercentile'];
 
@@ -239,24 +239,6 @@ function renderLayer () {
   });
 }
 
-// //This example renders a scatterplot with DeckGL, on top of a basemap rendered with mapboxgl, using a map style JSON from Carto.
-// new deck.DeckGL({
-//   mapStyle: 'https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json',
-//   initialViewState: {
-//     longitude: -122.45,
-//     latitude: 37.8,
-//     zoom: 15
-//   },
-//   controller: true,
-//   layers: [
-//     new deck.ScatterplotLayer({
-//       data: [
-//         {position: [-122.45, 37.8], color: [255, 0, 0], radius: 100}
-//       ],
-//       getFillColor: d => d.color,
-//       getRadius: d => d.radius
-//     })
-//   ]
-// });
+
 </script>
 </body>
