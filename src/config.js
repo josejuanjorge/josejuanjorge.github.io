@@ -1,6 +1,8 @@
+import { accessToken } from 'configApiKey.js';
+
 var config = {
     style: 'mapbox://styles/jjjc/cllc48uuj00s001pi5tfoaah1',
-    accessToken: 'pk.eyJ1IjoiampqYyIsImEiOiJjbGlpeTZkYjgwMnZoM2pwbDJrdGhmeWhnIn0.pSKvo7jTLU4cjcfQPDIPhQ',
+    accessToken: accessToken,
     showMarkers: false,
     // markerColor: '#3FB1CE',
     //projection: 'equirectangular',
