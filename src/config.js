@@ -2,7 +2,7 @@ import { accessToken } from 'configApiKey.js';
 
 var config = {
     style: 'mapbox://styles/jjjc/cllc48uuj00s001pi5tfoaah1',
-    accessToken: accessToken,
+    accessToken: 'pk.eyJ1IjoiampqYyIsImEiOiJjbG1rZWg0dzAwMXExMnJyeDFsb3g3MnhlIn0.NHcGliHgSMsGPNOQFwnBTQ',
     showMarkers: false,
     // markerColor: '#3FB1CE',
     //projection: 'equirectangular',
