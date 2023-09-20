@@ -1,5 +1,3 @@
-import { accessToken } from 'configApiKey.js';
-
 var config = {
     style: 'mapbox://styles/jjjc/cllc48uuj00s001pi5tfoaah1',
     accessToken: 'pk.eyJ1IjoiampqYyIsImEiOiJjbG1zNWluZnEwNzRnMmtxYzlhN2o0OXdoIn0.ISDcoFZesRJe_gM5umXnjg',
